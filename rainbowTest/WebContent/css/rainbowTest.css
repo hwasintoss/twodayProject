@@ -1,0 +1,37 @@
+@charset "UTF-8";
+
+.rainbowDiv{
+	float: left;
+}
+
+.rainbowDiv > div{
+	width: 50px;
+}
+
+#redDiv{
+	border: 10px outset red;
+}
+
+#orangeDiv{
+	border: 10px outset orange;
+}
+
+#yellowDiv{
+	border: 10px outset yellow;
+}
+
+#greenDiv{
+	border: 10px outset green;
+}
+
+#blueDiv{
+	border: 10px outset blue;
+}
+
+#navyDiv{
+	border: 10px outset navy;
+}
+
+#purpleDiv{
+	border: 10px outset purple;
+}
