@@ -80,7 +80,7 @@ th{
 </head>
 
 <body>
-	<form action="">
+	<form action="noticeboard.jsp" method="get">
 		<div id='outlineDiv'>
 			<div id='mainDiv'>
 				<div id='titleDiv'>
@@ -91,28 +91,28 @@ th{
 					<table>
 						<tr class='textTr'>
 							<th>제목</th>
-							<td><input class='inputText' type="text"></td>
+							<td><input class='inputText' type="text" name="title"></td>
 						</tr>
 						<tr class='textTr'>
 							<th>작성자</th>
-							<td><input class='inputText' type="text"></td>
+							<td><input class='inputText' type="text" name="writer"></td>
 						</tr>
 						<tr class='textTr'>
 							<th>비밀번호</th>
-							<td><input id='inputTextPw' type="password"></td>
+							<td><input id='inputTextPw' type="password" name="pwd"></td>
 						</tr>
 						<tr>
 							<td colspan="2">
-								<textarea id='inputTextArea'></textarea>
+								<textarea id='inputTextArea' name="contents"></textarea>
 							</td>
 						</tr>
 					</table>
 				</div>
 				
 				<div id='buttonDiv'>
-					<a href=''><input class='actionBtn' type="button" value='목록'></a>
-					<input class='actionBtn' type="submit" value='작성'>
-					<a href=''><input class='actionBtn' type="button" value='취소'></a>
+					<a href='noticeboard.jsp'><input class='actionBtn' type="button" value='목록'></a>
+					<input class='actionBtn' type="submit" value='작성' name="go">
+					<a href='noticeboard.jsp'><input class='actionBtn' type="button" value='취소'></a>
 				</div>
 			</div>
 		</div>
