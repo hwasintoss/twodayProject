@@ -272,7 +272,7 @@ th{
 		<div id='greyLine'></div>
 	</div>
 <!-- 몸통 -->
-	<form onsubmit="validation()">
+	<form onsubmit="return validation();" action="noticeboard.jsp">
 		<div id='outlineDiv'>
 			<div id='mainDiv'>
 			
@@ -284,15 +284,15 @@ th{
 					<table>
 						<tr class='textTr'>
 							<th>제목</th>
-							<td><input id='inputTextTitle' class='inputText' type="text"></td>
+							<td><input id='inputTextTitle' class='inputText' type="text" name="title"></td>
 						</tr>
 						<tr class='textTr'>
 							<th>작성자</th>
-							<td><input id='inputTextWriter' class='inputText' type="text"></td>
+							<td><input id='inputTextWriter' class='inputText' type="text" name="writer"></td>
 						</tr>
 						<tr class='textTr'>
 							<th>비밀번호</th>
-							<td><input id='inputTextPw' type="password" ></td>
+							<td><input id='inputTextPw' type="password" name="pwd"></td>
 						</tr>
 						<tr>
 							<td colspan="2">
@@ -304,7 +304,7 @@ th{
 				
 				<div id='buttonDiv'>
 					<a href=''><input class='actionBtn' type="button" value='목록'></a>
-					<input class='actionBtn' type="submit" value='작성'>
+					<input class='actionBtn' type="submit" value='작성' name="go">
 					<a href=''><input class='actionBtn' type="button" value='취소'></a>
 				</div>
 				
