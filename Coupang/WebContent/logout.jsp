@@ -4,10 +4,11 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<title>헤더</title>
+	<title>로그아웃</title>
 	
 <style type="text/css">
 
+/* 헤더 */
 #outlineDivH{
 	height: 150px;
 	margin: auto;
@@ -85,11 +86,58 @@ menu{
 #nameInput{
 	font-weight: bold;
 }
+/* 로그아웃 */
+#outlineDiv{
+	width: 1024px;
+	height: 768px;
+	margin: auto;
+/*  	border: 1px solid black;  */
+}
 
+#mainDiv{
+	width: 600px;
+	height: 200px;
+	border: 2px solid #0074e9;
+	margin: auto;
+	margin-top: 100px;
+	
+/*  	margin-top: 284px;  */
+/* 	background-color: #F0F0F0; */
+}
+
+#textDiv2{
+/* 	padding-top: 60px; */
+	text-align: center;
+}
+
+#textDiv2 > span{
+	font-size: 22px;
+}
+
+#btnDiv{
+	margin-top: 30px;
+	text-align: center;
+}
+
+#btnDiv > input{
+	background-color: white;
+	border: 1px solid #F0F0F0;
+	width: 110px;
+	height: 30px;
+	color: #0074e9;
+	font-size: 15px;
+	margin-left: 15px;
+	margin-right: 30px;
+}
+
+span{
+	font-size: 20px;
+}
 </style>
-
 <script type="text/javascript">
-	function enterListBox1() {
+
+//헤더
+function enterListBox1() {
 		var listBoxObj = document.getElementById('listBox1');
 		
 		listBoxObj.style.visibility = 'visible';
@@ -116,8 +164,20 @@ menu{
 	function alertMsg(){
 		alert('미구현된 기능입니다 !');	
 	}
+
+//기존
+	function btnEnter() {
+		this.style.backgroundColor = '#0074e9';
+		this.style.color = 'white';
+	}
+	
+	function btnLeave() {
+		this.style.backgroundColor = 'white';
+		this.style.color = '#0074e9';
+	}
 	
 	window.onload = function() {
+		//헤더
 		var listBox1 = document.getElementById('slotList1');
 		var listBox2 = document.getElementById('slotList2');
 		var listBox1In = document.getElementById('listBox1');
@@ -132,12 +192,21 @@ menu{
 		listBox2.addEventListener('mouseleave', leaveListBox2);
 		listBox2In.addEventListener('mouseenter', enterListBox2);
 		listBox2In.addEventListener('mouseleave', leaveListBox2);
+		
+		//기존
+		var btnObj = document.getElementsByClassName('inputBtn');
+		
+		btnObj[0].addEventListener('mouseenter',btnEnter);
+		btnObj[0].addEventListener('mouseleave',btnLeave);
+		btnObj[1].addEventListener('mouseenter',btnEnter);
+		btnObj[1].addEventListener('mouseleave',btnLeave);
 	}
-</script>	
+
+</script>
 </head>
 
 <body>
-
+<!-- 	헤더 -->
 	<div id='outlineDivH'>
 		<div id='logoutDiv'>
 			<div id='textDiv'>
@@ -177,6 +246,22 @@ menu{
 			</a>
 		</div>
 		<div id='greyLine'></div>
+	</div>
+<!-- 	기존 -->
+	<div id='outlineDiv'>
+
+		<div id='mainDiv'>
+			<div style="text-align: center; margin-top: 10px;">
+				<img alt="customerImg" src="./imgs/customerImg.PNG">
+			</div>
+			<div id='textDiv2'>
+				<span>정말 로그아웃 하시겠습니까?</span>
+			</div>
+			<div id='btnDiv'>
+				<input class='inputBtn' type="button" value="예">
+				<input class='inputBtn' type="button" value="아니요">
+			</div>
+		</div>
 	</div>
 	
 </body>
