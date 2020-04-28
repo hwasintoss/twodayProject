@@ -250,7 +250,7 @@ th{
 				<menu style="float: right;">
 					<li class='slotList'><a id='nameInput' href=""onclick="alertMsg();">차정경</a><a href='' onclick="alertMsg();">님</a></li>
 					<li class='slotList'><img style="width: 10px; height: 13px; margin-right: 3px;" alt="cash" src="./imgs/cash.jpg"><a href='' onclick="alertMsg();">쿠팡캐시 0원</a></li>
-					<li class='slotList'><a href=''>로그아웃</a></li>
+					<li class='slotList'><a href='logout.jsp'>로그아웃</a></li>
 					<li id='slotList2' class='slotList'><a>고객센터</a></li>
 				</menu>
 					<div id='listBox2'>
@@ -303,9 +303,9 @@ th{
 				</div>
 				
 				<div id='buttonDiv'>
-					<a href=''><input class='actionBtn' type="button" value='목록'></a>
+					<a href='noticeboard.jsp'><input class='actionBtn' type="button" value='목록'></a>
 					<input class='actionBtn' type="submit" value='작성' name="go">
-					<a href=''><input class='actionBtn' type="button" value='취소'></a>
+					<a href='noticeboard.jsp'><input class='actionBtn' type="button" value='취소'></a>
 				</div>
 				
 			</div>

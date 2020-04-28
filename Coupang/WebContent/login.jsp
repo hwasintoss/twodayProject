@@ -455,17 +455,21 @@ function alertMsg(){
          </div>
         
          <div>
-            <button id='loginBtn'>
-          	로그인
-            </button>
+         	<a href="noticeboard.jsp">
+            	<button  id='loginBtn'>
+          		로그인
+            	</button>
+            </a>
          </div>
          <br>
          <hr>
          <br>
           <div>
-            <button id='joinBtn'>
-          	회원가입
-            </button>
+          	<a href="memberJoin.jsp">
+	            <button id='joinBtn'>
+	          	회원가입
+	            </button>
+            </a>
          </div>
       </div>
       <div id='footer'>
