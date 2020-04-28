@@ -1,16 +1,29 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+request.setCharacterEncoding("UTF-8");
+String title = request.getParameter("title");
+String writer = request.getParameter("writer");
+String pwd = request.getParameter("pwd");
+String go = request.getParameter("go");
+String contents = request.getParameter("contents");
+String check = request.getParameter("check");
+%>
 <!DOCTYPE html>
 <html>
 <head>
 	<meta charset="UTF-8">
 	<title>게시판 상세</title>
 <style type="text/css">
+
+body{
+	margin: 0px;
+}
+
 /* 헤더 */
 #outlineDivH{
 	height: 150px;
 	margin: auto;
-/* 	border: 1px solid black; */
 }
 
 #logoutDiv{
@@ -85,7 +98,7 @@ menu{
 	font-weight: bold;
 }
 
-/* 몸통 */
+/* 메인 */
 table,tr,th,td{
 	border: 1px solid black;
 }
@@ -105,11 +118,10 @@ th{
 	width: 1024px;
 	height: 768px;
 	margin: auto;
-/* 	border: 1px solid black; */
 }
 
 #mainDiv{
-	margin: auto;
+	margin: 0px 75px;
 	width: 800px;
 	height: 668px;
 }
@@ -185,6 +197,16 @@ th{
 	}
 	
 	window.onload = function() {
+		var writer = "<%=writer%>";
+		var inputNameText = document.getElementById('nameInput');
+		var inputTextWriter = document.getElementById('inputTextWriter'); 
+		
+		if(writer == 'null'){
+			writer = " ";
+		}
+		inputNameText.innerHTML = writer;
+		inputTextWriter.value = writer;
+		
 		var listBox1 = document.getElementById('slotList1');
 		var listBox2 = document.getElementById('slotList2');
 		var listBox1In = document.getElementById('listBox1');
@@ -206,6 +228,7 @@ th{
 		var checkWriter = document.getElementById('inputTextWriter');
 		var checkPwd = document.getElementById('inputTextPw');
 		var checkContent = document.getElementById('inputTextArea');
+		
 		
 		if(checkTitle.value == ""){
 			alert("제목을 입력하세요");
@@ -265,13 +288,14 @@ th{
 		</div>
 		
 		<div id='logoDiv'>			
-			<a href="">
+			<a href="noticeboard.jsp">
 				<img alt="sectionImg" src="./imgs/sectionImg.png">				
 			</a>
 		</div>
 		<div id='greyLine'></div>
 	</div>
-<!-- 몸통 -->
+	
+<!-- 메인 -->
 	<form onsubmit="return validation();" action="noticeboard.jsp">
 		<div id='outlineDiv'>
 			<div id='mainDiv'>

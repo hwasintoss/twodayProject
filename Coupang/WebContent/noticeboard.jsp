@@ -163,7 +163,21 @@ function alertMsg(){
 		var title = "<%=title%>";
 		var writer = "<%=writer%>";
 		var go = "<%=go%>";
+		/*  */
+		var listBox1 = document.getElementById('slotList1');
+		var listBox2 = document.getElementById('slotList2');
+		var listBox1In = document.getElementById('listBox1');
+		var listBox2In = document.getElementById('listBox2');
 		
+		listBox1.addEventListener('mouseenter', enterListBox1);
+		listBox1.addEventListener('mouseleave', leaveListBox1);
+		listBox1In.addEventListener('mouseenter', enterListBox1);
+		listBox1In.addEventListener('mouseleave', leaveListBox1);
+		
+		listBox2.addEventListener('mouseenter', enterListBox2);
+		listBox2.addEventListener('mouseleave', leaveListBox2);
+		listBox2In.addEventListener('mouseenter', enterListBox2);
+		listBox2In.addEventListener('mouseleave', leaveListBox2);
 		if(go == "작성"){
 			var bodyObj = document.getElementById('body');
 			var tableObj = document.getElementsByTagName('table')[0];
@@ -213,21 +227,7 @@ function alertMsg(){
 			rowObj.appendChild(commentsObj);
 			
 			tableObj.insertBefore(rowObj, tableObj.children[1]);
-			/*  */
-			var listBox1 = document.getElementById('slotList1');
-			var listBox2 = document.getElementById('slotList2');
-			var listBox1In = document.getElementById('listBox1');
-			var listBox2In = document.getElementById('listBox2');
-			
-			listBox1.addEventListener('mouseenter', enterListBox1);
-			listBox1.addEventListener('mouseleave', leaveListBox1);
-			listBox1In.addEventListener('mouseenter', enterListBox1);
-			listBox1In.addEventListener('mouseleave', leaveListBox1);
-			
-			listBox2.addEventListener('mouseenter', enterListBox2);
-			listBox2.addEventListener('mouseleave', leaveListBox2);
-			listBox2In.addEventListener('mouseenter', enterListBox2);
-			listBox2In.addEventListener('mouseleave', leaveListBox2);
+
 		}
 		
 	}
@@ -280,7 +280,8 @@ function alertMsg(){
 	<div style="width: 1024px; height: 768px; margin: 0px auto;">
 		<div>
 			<h1>샘플 게시판</h1>
-			<form action="noticeBoardDetail.jsp" method="post">
+			<form action="noticeBoardDetail.jsp" method="get">
+				<input type="hidden" name="writer" value="<%=writer%>">
 				<input type="submit" value="게시판 작성" name="notice" style="float: right; margin-bottom: 10px;">
 			</form>
 		</div>

@@ -1,5 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+request.setCharacterEncoding("UTF-8");
+String title = request.getParameter("title");
+String writer = request.getParameter("writer");
+String pwd = request.getParameter("pwd");
+String go = request.getParameter("go");
+String contents = request.getParameter("contents");
+String check = request.getParameter("check");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,11 +17,14 @@
 	
 <style type="text/css">
 
+body{
+	margin: 0px;
+}
+
 /* 헤더 */
 #outlineDivH{
 	height: 150px;
 	margin: auto;
-/* 	border: 1px solid black; */
 }
 
 #logoutDiv{
@@ -86,12 +98,11 @@ menu{
 #nameInput{
 	font-weight: bold;
 }
-/* 로그아웃 */
+
+/* 메인 */
 #outlineDiv{
 	width: 1024px;
-	height: 768px;
 	margin: auto;
-/*  	border: 1px solid black;  */
 }
 
 #mainDiv{
@@ -100,13 +111,9 @@ menu{
 	border: 2px solid #0074e9;
 	margin: auto;
 	margin-top: 100px;
-	
-/*  	margin-top: 284px;  */
-/* 	background-color: #F0F0F0; */
 }
 
 #textDiv2{
-/* 	padding-top: 60px; */
 	text-align: center;
 }
 
@@ -119,7 +126,7 @@ menu{
 	text-align: center;
 }
 
-#btnDiv > input{
+.inputBtn{
 	background-color: white;
 	border: 1px solid #F0F0F0;
 	width: 110px;
@@ -136,8 +143,8 @@ span{
 </style>
 <script type="text/javascript">
 
-//헤더
-function enterListBox1() {
+	// 헤더
+	function enterListBox1() {
 		var listBoxObj = document.getElementById('listBox1');
 		
 		listBoxObj.style.visibility = 'visible';
@@ -165,7 +172,7 @@ function enterListBox1() {
 		alert('미구현된 기능입니다 !');	
 	}
 
-//기존
+	// 메인
 	function btnEnter() {
 		this.style.backgroundColor = '#0074e9';
 		this.style.color = 'white';
@@ -176,8 +183,20 @@ function enterListBox1() {
 		this.style.color = '#0074e9';
 	}
 	
+	function returnPage() {
+		history.back();
+	}
+	
 	window.onload = function() {
-		//헤더
+		// 메인
+		var writer = "<%=writer%>";
+		var inputNameText = document.getElementById('nameInput');
+		
+		if(writer == 'null'){
+			writer = " ";
+		}
+		inputNameText.innerHTML = writer;
+		
 		var listBox1 = document.getElementById('slotList1');
 		var listBox2 = document.getElementById('slotList2');
 		var listBox1In = document.getElementById('listBox1');
@@ -193,13 +212,14 @@ function enterListBox1() {
 		listBox2In.addEventListener('mouseenter', enterListBox2);
 		listBox2In.addEventListener('mouseleave', leaveListBox2);
 		
-		//기존
+		// 메인
 		var btnObj = document.getElementsByClassName('inputBtn');
 		
 		btnObj[0].addEventListener('mouseenter',btnEnter);
 		btnObj[0].addEventListener('mouseleave',btnLeave);
 		btnObj[1].addEventListener('mouseenter',btnEnter);
 		btnObj[1].addEventListener('mouseleave',btnLeave);
+		btnObj[1].addEventListener('click',returnPage);
 	}
 
 </script>
@@ -224,9 +244,9 @@ function enterListBox1() {
 					</div>
 					
 				<menu style="float: right;">
-					<li class='slotList'><a id='nameInput' href=""onclick="alertMsg();">차정경</a><a href='' onclick="alertMsg();">님</a></li>
+					<li class='slotList'><a id='nameInput' href=""onclick="alertMsg();"></a><a href='' onclick="alertMsg();">님</a></li>
 					<li class='slotList'><img style="width: 10px; height: 13px; margin-right: 3px;" alt="cash" src="./imgs/cash.jpg"><a href='' onclick="alertMsg();">쿠팡캐시 0원</a></li>
-					<li class='slotList'><a href=''>로그아웃</a></li>
+					<li class='slotList'><a href='logout.jsp'>로그아웃</a></li>
 					<li id='slotList2' class='slotList'><a>고객센터</a></li>
 				</menu>
 					<div id='listBox2'>
@@ -241,13 +261,14 @@ function enterListBox1() {
 		</div>
 		
 		<div id='logoDiv'>			
-			<a href="">
+			<a href="noticeboard.jsp">
 				<img alt="sectionImg" src="./imgs/sectionImg.png">				
 			</a>
 		</div>
 		<div id='greyLine'></div>
 	</div>
-<!-- 	기존 -->
+	
+<!-- 	메인 -->
 	<div id='outlineDiv'>
 
 		<div id='mainDiv'>
@@ -258,7 +279,7 @@ function enterListBox1() {
 				<span>정말 로그아웃 하시겠습니까?</span>
 			</div>
 			<div id='btnDiv'>
-				<input class='inputBtn' type="button" value="예">
+				<a href='login.jsp'><input class='inputBtn' type="button" value="예"></a>
 				<input class='inputBtn' type="button" value="아니요">
 			</div>
 		</div>
