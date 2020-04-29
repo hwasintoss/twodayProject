@@ -4,6 +4,7 @@
 request.setCharacterEncoding("UTF-8");
 String title = request.getParameter("title");
 String writer = request.getParameter("writer");
+String name = request.getParameter("name");
 String pwd = request.getParameter("pwd");
 String go = request.getParameter("go");
 String contents = request.getParameter("contents");
@@ -13,6 +14,7 @@ String check = request.getParameter("check");
 <html>
 <head>
 	<meta charset="UTF-8">
+	<link rel="shortcut icon" href="./logo_favicon.ico"/>
 	<title>게시판 상세</title>
 <style type="text/css">
 
@@ -197,15 +199,15 @@ th{
 	}
 	
 	window.onload = function() {
-		var writer = "<%=writer%>";
+		var name = "<%=name%>";
 		var inputNameText = document.getElementById('nameInput');
-		var inputTextWriter = document.getElementById('inputTextWriter'); 
+		var inputTextWriter = document.getElementById('inputTextWriter');
 		
-		if(writer == 'null'){
-			writer = " ";
+		if(name == 'null'){
+			name = " ";
 		}
-		inputNameText.innerHTML = writer;
-		inputTextWriter.value = writer;
+		inputNameText.innerHTML = name;
+		inputTextWriter.value = name;
 		
 		var listBox1 = document.getElementById('slotList1');
 		var listBox2 = document.getElementById('slotList2');
@@ -247,6 +249,17 @@ th{
 		}
 		
 	}
+	function noticeFnc() {
+		var name = "<%=name%>";
+ 		location.href = 'noticeboard.jsp?name='+name;
+ 		history.back();
+	}
+	
+	function logoutFnc() {
+		var name = "<%=name%>";
+		location.href='logout.jsp?name='+name;
+	}
+	
 
 </script>
 </head>
@@ -271,9 +284,9 @@ th{
 					</div>
 					
 				<menu style="float: right;">
-					<li class='slotList'><a id='nameInput' href=""onclick="alertMsg();">차정경</a><a href='' onclick="alertMsg();">님</a></li>
+					<li class='slotList'><a id='nameInput' href=""onclick="alertMsg();"><%=name%></a><a href='' onclick="alertMsg();">님</a></li>
 					<li class='slotList'><img style="width: 10px; height: 13px; margin-right: 3px;" alt="cash" src="./imgs/cash.jpg"><a href='' onclick="alertMsg();">쿠팡캐시 0원</a></li>
-					<li class='slotList'><a href='logout.jsp'>로그아웃</a></li>
+					<li class='slotList'><a onclick="logoutFnc();">로그아웃</a></li>
 					<li id='slotList2' class='slotList'><a>고객센터</a></li>
 				</menu>
 					<div id='listBox2'>
@@ -288,9 +301,9 @@ th{
 		</div>
 		
 		<div id='logoDiv'>			
-			<a href="noticeboard.jsp">
-				<img alt="sectionImg" src="./imgs/sectionImg.png">				
-			</a>
+			
+				<img alt="sectionImg" src="./imgs/sectionImg.png" onclick="noticeFnc();">				
+
 		</div>
 		<div id='greyLine'></div>
 	</div>
@@ -312,7 +325,7 @@ th{
 						</tr>
 						<tr class='textTr'>
 							<th>작성자</th>
-							<td><input id='inputTextWriter' class='inputText' type="text" name="writer"></td>
+							<td><input id='inputTextWriter' class='inputText' type="text" name="writer" value="<%=name%>"></td>
 						</tr>
 						<tr class='textTr'>
 							<th>비밀번호</th>
@@ -327,9 +340,10 @@ th{
 				</div>
 				
 				<div id='buttonDiv'>
-					<a href='noticeboard.jsp'><input class='actionBtn' type="button" value='목록'></a>
+					<input type="hidden" name="name" value="<%=name%>">
+					<input class='actionBtn' type="button" value='목록' onclick="noticeFnc();">
 					<input class='actionBtn' type="submit" value='작성' name="go">
-					<a href='noticeboard.jsp'><input class='actionBtn' type="button" value='취소'></a>
+					<input class='actionBtn' type="button" value='취소' onclick="noticeFnc();">
 				</div>
 				
 			</div>

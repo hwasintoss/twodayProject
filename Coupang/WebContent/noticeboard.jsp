@@ -4,6 +4,7 @@
 request.setCharacterEncoding("UTF-8");
 String title = request.getParameter("title");
 String writer = request.getParameter("writer");
+String name = request.getParameter("name");
 String pwd = request.getParameter("pwd");
 String go = request.getParameter("go");
 String contents = request.getParameter("contents");
@@ -13,8 +14,12 @@ String check = request.getParameter("check");
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<link rel="shortcut icon" href="./logo_favicon.ico"/>
+<title>게시판</title>
 <style type="text/css">
+body{
+	margin: 0px;
+}
 #outlineDivH{
 	height: 150px;
 	margin: auto;
@@ -151,6 +156,7 @@ function alertMsg(){
 	function intoTitleFnc() {
 		var title = "<%=title%>";
 		var writer = "<%=writer%>";
+		var name = "<%=name%>";
 		var pwd = "<%=pwd%>";
 		var go = "<%=go%>";
 		var contents = "<%=contents%>";
@@ -207,7 +213,7 @@ function alertMsg(){
 			writerObj.appendChild(writerText);
 			
 			var today = new Date();
-			var dateText = document.createTextNode(today.getFullYear()+ "-" + (today.getMonth()+1) + "-" +today.getDate());
+			var dateText = document.createTextNode(today.getFullYear()+ "." + (today.getMonth()+1) + "." +today.getDate());
 			dateObj.appendChild(dateText);
 			
 			var viw = 0;
@@ -227,9 +233,16 @@ function alertMsg(){
 			rowObj.appendChild(commentsObj);
 			
 			tableObj.insertBefore(rowObj, tableObj.children[1]);
-
+			
+			var footBtn = document.getElementById('footBtn');
+			footBtn.setAttribute('style', 'width: 220px; margin: 40px auto;');
 		}
 		
+	}
+	
+	function logoutFnc() {
+		var name = "<%=name%>";
+		location.href='logout.jsp?name='+name;
 	}
 </script>
 <body>
@@ -250,9 +263,9 @@ function alertMsg(){
 					</div>
 					
 				<menu style="float: right;">
-					<li class='slotList'><a id='nameInput' href=""onclick="alertMsg();">차정경</a><a href='' onclick="alertMsg();">님</a></li>
+					<li class='slotList'><a id='nameInput' href=""onclick="alertMsg();"><%=name%></a><a href='' onclick="alertMsg();">님</a></li>
 					<li class='slotList'><img style="width: 10px; height: 13px; margin-right: 3px;" alt="cash" src="./imgs/cash.jpg"><a href='' onclick="alertMsg();">쿠팡캐시 0원</a></li>
-					<li class='slotList'><a href='logout.jsp'>로그아웃</a></li>
+					<li class='slotList'><a onclick="logoutFnc();">로그아웃</a></li>
 					<li id='slotList2' class='slotList'><a>고객센터</a></li>
 				</menu>
 					<div id='listBox2'>
@@ -281,7 +294,7 @@ function alertMsg(){
 		<div>
 			<h1>샘플 게시판</h1>
 			<form action="noticeBoardDetail.jsp" method="get">
-				<input type="hidden" name="writer" value="<%=writer%>">
+				<input type="hidden" name="name" value="<%=name%>">
 				<input type="submit" value="게시판 작성" name="notice" style="float: right; margin-bottom: 10px;">
 			</form>
 		</div>
@@ -346,7 +359,7 @@ function alertMsg(){
 			</table>
 		</div>
 		
-		<div style="width: 220px; margin: 10px auto;">
+		<div style="width: 220px; margin: 10px auto;" id="footBtn">
 			<input type="button" value="페이지 1 의 2" style="height: 25px;"><input type="button" value="1" style="color: white; background-color: #6A84B7; height: 25px;"><a href="noticeboard2.jsp"><input type="button" value="2" style="height: 25px;"></a>
 			<a href="noticeboard2.jsp"><input type="button" value="다음" style="border: none; background-color: white;"></a>
 		</div>

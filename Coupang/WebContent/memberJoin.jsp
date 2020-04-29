@@ -4,6 +4,7 @@
 <html>
 <head>
    <meta charset="UTF-8">
+   <link rel="shortcut icon" href="./logo_favicon.ico"/>
    <title>Insert title here</title>
 <style type="text/css">
 body{
@@ -500,9 +501,8 @@ function alertMsg(){
 					</div>
 					
 				<menu style="float: right;">
-					<li class='slotList'><a id='nameInput' href=""onclick="alertMsg();">차정경</a><a href='' onclick="alertMsg();">님</a></li>
-					<li class='slotList'><img style="width: 10px; height: 13px; margin-right: 3px;" alt="cash" src="./imgs/cash.jpg"><a href='' onclick="alertMsg();">쿠팡캐시 0원</a></li>
-					<li class='slotList'><a href='logout.jsp'>로그아웃</a></li>
+					<li class='slotList'><a href="newLogin.jsp">로그인</a></li>
+					<li class='slotList'><a href='memberJoin.jsp'>회원가입</a></li>
 					<li id='slotList2' class='slotList'><a>고객센터</a></li>
 				</menu>
 					<div id='listBox2'>
@@ -517,7 +517,7 @@ function alertMsg(){
 		</div>
 		
 		<div id='logoDiv'>			
-			<a href="">
+			<a href="newLogin.jsp">
 				<img alt="sectionImg" src="./imgs/sectionImg.png">				
 			</a>
 		</div>
@@ -528,16 +528,16 @@ function alertMsg(){
 <!-- 내것 -->
    <div id='wrap'>
       <div id='header'>
-      	<a href="login.jsp">
+      	<a href="newLogin.jsp">
           <img alt="쿠팡로고이미지" src="./coupang_memberJoin_logo.PNG">
         </a>
       </div>
       <div id='content'>
-      <form action="login.jsp" onsubmit="return finalValid();">
+      <form action="newLogin.jsp" onsubmit="return finalValid();">
          <div id='one' style="width: 480px; margin-left: 300px;">
             <div id='idRedBox' class='inputField'>
                <img class='imgBox' alt="아이디입력" src="./id.png">
-               <input id='inputId' class='inputBox' type="text" placeholder="아이디(이메일)">
+               <input id='inputId' class='inputBox' type="text" placeholder="아이디(이메일)" name="email">
                <img id="idSuccessImg" src="./success.png" style="top: 12px; right: 10px; height: 20px; display: none;">
             </div>
             <div class='errorBox'></div>
@@ -546,7 +546,7 @@ function alertMsg(){
          <div id='two' style="width: 480px; margin-left: 300px;">
             <div id='pwdRedBox' class='inputField'>
                <img class='imgBox' alt="비밀번호입력" src="./pwd.png">
-               <input id='inputPwd' class='inputBox' type="password" placeholder="비밀번호(영문 숫자 특수문자 2가지 이상 6~15자 이내)">
+               <input id='inputPwd' class='inputBox' type="password" placeholder="비밀번호(영문 숫자 특수문자 2가지 이상 6~15자 이내)" name="pwd">
            	   <img id="pwSuccessImg" src="./success.png" style="top: 12px; right: 10px; height: 20px; display: none;">
             </div>
             <div class='errorBox'></div>
@@ -555,7 +555,7 @@ function alertMsg(){
          <div id='three' style="width: 480px; margin-left: 300px;">
             <div id='pwdCheckRedBox' class='inputField'>
                <img class='imgBox' alt="비밀번호확인" src="./pwdCheck.png">
-               <input id='inputPwdCheck' class='inputBox' type="password" placeholder="비밀번호 확인">
+               <input id='inputPwdCheck' class='inputBox' type="password" placeholder="비밀번호 확인" name="pwdCheck">
                <img id="pwCheckSuccessImg" src="./success.png" style="top: 12px; right: 10px; height: 20px; display: none;">
             </div>
             <div class='errorBox'></div>
@@ -564,7 +564,7 @@ function alertMsg(){
          <div id='four' style="width: 480px; margin-left: 300px;">
             <div id='nameRedBox'  class='inputField'>
                <img class='imgBox' alt="이름" src="./name.png">
-               <input id='inputName' class='inputBox' type="text" placeholder="이름">
+               <input id='inputName' class='inputBox' type="text" placeholder="이름" name="name">
            	   <img id="nameSuccessImg" src="./success.png" style="top: 12px; right: 10px; height: 20px; display: none;">
             </div>
             <div class='errorBox'></div>
@@ -573,7 +573,7 @@ function alertMsg(){
          <div id='five' style="width: 480px; margin-left: 300px;">
             <div id='phoneRedBox'  class='inputField'>
                <img class='imgBox' alt="휴대폰번호" src="./phone.png">
-               <input id='inputPhone' class='inputBox' type="tel" placeholder="휴대폰 번호">
+               <input id='inputPhone' class='inputBox' type="tel" placeholder="휴대폰 번호" name="phone">
                <img id="phoneSuccessImg" src="./success.png" style="top: 12px; right: 10px; height: 20px; display: none;">
             </div>
             <div class='errorBox'></div>

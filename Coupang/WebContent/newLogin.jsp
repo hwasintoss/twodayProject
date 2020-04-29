@@ -12,8 +12,24 @@ String phone = request.getParameter("phone");
 <html>
 <head>
    <meta charset="UTF-8">
-   <title>Insert title here</title>
+   <link rel="shortcut icon" href="./logo_favicon.ico"/>
+   <title>로그인</title>
 <style type="text/css">
+
+#errorId {
+	color: red;
+	font-size: 12px;
+	margin: 9px 12px 0px;
+	font-family: dotum,sans-serif;
+}
+
+#errorPwd {
+	color: red;
+	font-size: 12px;
+	margin: 9px 12px 0px;
+	font-family: dotum,sans-serif;
+}
+
 body{
 	margin: 0px;
 }
@@ -101,7 +117,7 @@ menu{
 
 #wrap {
 	
-   margin: 1px auto;
+   margin: 28px auto;
    width: 1024px;
    height: 768px;
    
@@ -189,10 +205,7 @@ menu{
    font-size: 12px;
    font-family: dotum,sans-serif;
 }
-p {
-   font-size: 12px;
-   color: red;
-}
+
 hr{
  	border: 0.5px solid #AAAAAA;
  	width: 459px;
@@ -265,109 +278,57 @@ function alertMsg(){
 	   }
    
    function idValidCheckFnc() {
-      var oneDiv = document.getElementById('one');
-      var twoDiv = document.getElementById('two');
-      var pTag = document.createElement('p');
-      var pTag2 = document.createElement('p');
-     
-      var pText = document.createTextNode('이메일을 입력하세요.');
-      var pText2 = document.createTextNode('아이디(이메일)는 이메일 형식으로 입력해주세요.');
-     
-      
-      var redBox = document.getElementById('idRedBox');
-      
-      pTag.appendChild(pText);
-      pTag2.appendChild(pText2);
-      pTag3.appendChild(pText3);
+	  var errorMsgId = document.getElementById('errorId'); 
+	  var errorMsgPwd = document.getElementById('errorPwd'); 
+	  var oneDiv = document.getElementById('one');
+	  var idRedBox = document.getElementById('idRedBox');
    
       var emailValue = /^[a-zA-Z0-9]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
       
       if(idObj.value == ""){
-         oneDiv.insertBefore(pTag, oneDiv[0]);
-         redBox.style.border = '1px solid red';
- 
-         if(oneDiv.childNodes[3].innerHTML == '이메일을 입력하세요.' || '아이디(이메일)는 이메일 형식으로 입력해주세요.'){
-        	 oneDiv.removeChild(oneDiv.childNodes[2]);
-        	 return false;
-         }
-         return false;  
-         
+        idRedBox.style.border = '1px solid red';
+        errorMsgId.style.display = 'inherit';
+        errorMsgId.innerHTML = '이메일을 입력하세요.';    	 
+        return false;
       }else if(!emailValue.test(idObj.value)){
-         oneDiv.insertBefore(pTag2, oneDiv[0]);
-         redBox.style.border = '1px solid red';
-         if(oneDiv.childNodes[3].innerHTML == '이메일을 입력하세요.' || '아이디(이메일)는 이메일 형식으로 입력해주세요.'){
-//    		 	oneDiv.removeChild(oneDiv.childNodes[2]);
-   		 	return false;
-         }
-         return false;
-         
+    	 idRedBox.style.border = '1px solid red';
+    	 errorMsgId.style.display = 'inherit';
+    	 errorMsgId.innerHTML = '아이디(이메일)는 이메일 형식으로 입력해주세요.';
+     	 return false; 
       }else if(idObj.value != email){
-    	  if(oneDiv.childNodes[1].innerHTML == '아이디(이메일)는 이메일 형식으로 입력해주세요.' || '이메일을 입력하세요.' || ""){
-//     		  oneDiv.removeChild(oneDiv.childNodes[2]);
-    		  redBox.style.border = 'none';
-    		  return false;
-    	  }else if(twoDiv.childNodes[1].innerHTML == '이메일 또는 비밀번호를 다시 확인하세요. 쿠팡에 등록되지 않은 이메일이거나, 이메일 또는 비밀번호를 잘못 입력하셨습니다.'){
-//     		  twoDiv.insertBefor(pTag3, twoDiv[0]);
-//     		  twoDiv.removeChild(twoDiv.childNodes[2]);
-    		  return false;
-    	  }
-    	return false;
+    	  idRedBox.style.border = 'none';
     	  
+    	 
+    	  return false;
       }else{
-    	  if(oneDiv.childNodes[1].innerHTML == '이메일을 입력하세요.' || '아이디(이메일)는 이메일 형식으로 입력해주세요.'){
-//      		 oneDiv.removeChild(oneDiv.childNodes[2]);
-     		redBox.style.border = 'none';
-    	
-    	  }else if(twoDiv.childNodes[1].innerHTML == '이메일 또는 비밀번호를 다시 확인하세요. 쿠팡에 등록되지 않은 이메일이거나, 이메일 또는 비밀번호를 잘못 입력하셨습니다.' || '비밀번호를 입력해주세요.'){
-//     		  twoDiv.removeChild(twoDiv.childNodes[2]);
-    	
-    	  }
-			return true;
-    	  }
+    	  idRedBox.style.border = 'none';
+    	  errorMsgId.style.display = 'none';
+ 		return true;
+      }
+    	 
    }   
 
     function pwdValidFnc() {
-    	 var twoDiv = document.getElementById('two');
-         var pTag = document.createElement('p');
-         var pTag3 = document.createElement('p');
-         var pText = document.createTextNode('비밀번호를 입력해주세요.');
-         var pText3 = document.createTextNode('이메일 또는 비밀번호를 다시 확인하세요. 쿠팡에 등록되지 않은 이메일이거나, 이메일 또는 비밀번호를 잘못 입력하셨습니다.');
-         pTag.appendChild(pText);
-         pTag3.appendChild(pText3);
-         
-         var redBox = document.getElementById('pwdRedBox');
-         
-         if(pwdObj.value == ""){
-            twoDiv.insertBefore(pTag, twoDiv[0]);
-            redBox.style.border = '1px solid red';
-  
-            if(twoDiv.childNodes[3].innerHTML == '비밀번호를 입력해주세요.' || '이메일 또는 비밀번호를 다시 확인하세요. 쿠팡에 등록되지 않은 이메일이거나, 이메일 또는 비밀번호를 잘못 입력하셨습니다.'  ){
-            	twoDiv.removeChild(twoDiv.childNodes[2]);
-            	return false;
-            }
-           
-            return false;
-            
-         }else if(pwdObj.value != pwd){
-        	if(twoDiv.childNodes[1].innerHTML == '비밀번호를 입력해주세요.' || '이메일 또는 비밀번호를 다시 확인하세요. 쿠팡에 등록되지 않은 이메일이거나, 이메일 또는 비밀번호를 잘못 입력하셨습니다.'){
-//         		twoDiv.insertBefore(pTag3, twoDiv[0]);
-        		redBox.style.border = 'none';
-        		if(twoDiv.childNodes[1].innerHTML != 'undefined'){
-//         			twoDiv.removeChild(twoDiv.childNodes[2]);	
-        		}
-           	  	return false;
-        	}
-       	  	return false;
-         }else {
-         	 redBox.style.border = 'none';
-//          	if(twoDiv.childNodes[1].innerHTML != '비밀번호를 입력해주세요.' || '이메일 또는 비밀번호를 다시 확인하세요. 쿠팡에 등록되지 않은 이메일이거나, 이메일 또는 비밀번호를 잘못 입력하셨습니다.'){
-//               twoDiv.removeChild(twoDiv.childNodes[2]);
-// 				return false;         	
-//          	}
-             return true;	 
-         }
-  		 
-      }
+        var errorMsgPwd = document.getElementById('errorPwd');
+        var twoDiv = document.getElementById('two');         
+        var pwdRedBox = document.getElementById('pwdRedBox');
+        
+       if(pwdObj.value == ""){
+    	   pwdRedBox.style.border = '1px solid red';
+    	   errorMsgPwd.style.display = 'inherit';
+    	   errorMsgPwd.innerHTML = '비밀번호를 입력해주세요.';
+    	   return false;
+       }else if(pwdObj.value != pwd){
+    	   pwdRedBox.style.border = 'none';
+    	   
+    	  
+    	   return false;
+       }else {
+    	   idRedBox.style.border = 'none';
+    	   errorMsgPwd.style.display = 'none';
+      	   return true;
+       }
+    }
     
     function eyeFnc() {
     	var pwdText =  document.getElementById('inputPwd');
@@ -376,23 +337,25 @@ function alertMsg(){
 			pwdText.removeAttribute('type');
 			pwdText.setAttribute('type', 'text');
 			eyeObj.removeAttribute('src');
-			eyeObj.setAttribute('src', './눈_2.png');
+			eyeObj.setAttribute('src', './눈__2.png');
 			return;
  		}else if(pwdText.getAttribute('type') == 'text'){
  			pwdText.removeAttribute('type');
 			pwdText.setAttribute('type', 'password');
 			eyeObj.removeAttribute('src');
-			eyeObj.setAttribute('src', './눈_1.png');
+			eyeObj.setAttribute('src', './눈__1.png');
 			return;
  		}
 	}
     
     function allCheck() {
     	 if (!idValidCheckFnc()) {
-//     		 twoDiv.insertBefore(pTag3, twoDiv[0]);
+    		 var errorMsgPwd = document.getElementById('errorPwd');
+    		 errorMsgPwd.innerHTML = '이메일 또는 비밀번호를 다시 확인하세요. 쿠팡에 등록되지 않은 이메일이거나, 이메일 또는 비밀번호를 잘못 입력하셨습니다.';
              return false;
          } else if (!pwdValidFnc()) {
-//         	 twoDiv.insertBefore(pTag3, twoDiv[0]);
+        	 var errorMsgPwd = document.getElementById('errorPwd');
+        	 errorMsgPwd.innerHTML = '이메일 또는 비밀번호를 다시 확인하세요. 쿠팡에 등록되지 않은 이메일이거나, 이메일 또는 비밀번호를 잘못 입력하셨습니다.';
              return false;
          }
          else{
@@ -432,7 +395,7 @@ function alertMsg(){
 					</div>
 					
 				<menu style="float: right;">
-					<li class='slotList'><a href="login.jsp">로그인</a></li>
+					<li class='slotList'><a href="newLogin.jsp">로그인</a></li>
 					<li class='slotList'><a href='memberJoin.jsp'>회원가입</a></li>
 					<li id='slotList2' class='slotList'><a>고객센터</a></li>
 				</menu>
@@ -448,7 +411,7 @@ function alertMsg(){
 		</div>
 		
 		<div id='logoDiv'>			
-			<a href="login.jsp">
+			<a href="newLogin.jsp">
 				<img alt="sectionImg" src="./imgs/sectionImg.png">				
 			</a>
 		</div>
@@ -459,7 +422,7 @@ function alertMsg(){
 <form action="noticeboard.jsp" onsubmit="return allCheck();" method="post">
    <div id='wrap'>
       <div id='header'>
-      	<a href="login.jsp">
+      	<a href="newLogin.jsp">
          	<img alt="쿠팡로고이미지" src="./coupang_memberJoin_logo.PNG">
         </a>
       </div>
@@ -469,14 +432,16 @@ function alertMsg(){
                <img class='imgBox' alt="아이디입력" src="./id.png" onclick="emailFocus();">
                <input id='inputId' class='inputBox' type="text" placeholder="아이디(이메일)">
             </div>
+            <div id="errorId"></div>
          </div>
          
          <div id='two' style="width: 480px; margin-left: 300px;">
             <div id='pwdRedBox' class='inputField'>
                <img class='imgBox' alt="비밀번호입력" src="./pwd.png" onclick="pwdFocus();">
                <input id='inputPwd' class='inputBox' type="password" placeholder="비밀번호" >
-               <img alt="as" src="./눈_1.png" id="eye" onclick="eyeFnc();" style="padding:8px;  width: 36px; height: 31px; border: 0.5px solid #AAAAAA; border-left: none; float: left;">
+               <img alt="as" src="./눈__1.png" id="eye" onclick="eyeFnc();" style="padding:8px;  width: 36px; height: 31px; border: 0.5px solid #AAAAAA; border-left: none; float: left;">
             </div>
+            <div id="errorPwd"></div>
          </div>
         
          <div>

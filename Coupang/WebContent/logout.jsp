@@ -4,6 +4,7 @@
 request.setCharacterEncoding("UTF-8");
 String title = request.getParameter("title");
 String writer = request.getParameter("writer");
+String name = request.getParameter("name");
 String pwd = request.getParameter("pwd");
 String go = request.getParameter("go");
 String contents = request.getParameter("contents");
@@ -12,6 +13,7 @@ String check = request.getParameter("check");
 <!DOCTYPE html>
 <html>
 <head>
+	<link rel="shortcut icon" href="./logo_favicon.ico"/>
 	<meta charset="UTF-8">
 	<title>로그아웃</title>
 	
@@ -189,13 +191,13 @@ span{
 	
 	window.onload = function() {
 		// 메인
-		var writer = "<%=writer%>";
+		var name = "<%=name%>";
 		var inputNameText = document.getElementById('nameInput');
 		
-		if(writer == 'null'){
-			writer = " ";
+		if(name == 'null'){
+			name = " ";
 		}
-		inputNameText.innerHTML = writer;
+		inputNameText.innerHTML = name;
 		
 		var listBox1 = document.getElementById('slotList1');
 		var listBox2 = document.getElementById('slotList2');
