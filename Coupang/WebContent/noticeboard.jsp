@@ -14,7 +14,7 @@ String check = request.getParameter("check");
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="shortcut icon" href="./logo_favicon.ico"/>
+<link rel="shortcut icon" href="./coupangLogo_favicon.ico"/>
 <title>게시판</title>
 <style type="text/css">
 body{
@@ -208,12 +208,15 @@ function alertMsg(){
 			titleObj.appendChild(titleText);
 			titleObj.setAttribute('onclick', 'intoTitleFnc();');
 			titleObj.setAttribute('class', 'titleTd');
+			var newImg = document.createElement('img');
+			newImg.setAttribute('src', './new.png');
+			titleObj.appendChild(newImg);
 			
 			var writerText = document.createTextNode(writer);
 			writerObj.appendChild(writerText);
 			
 			var today = new Date();
-			var dateText = document.createTextNode(today.getFullYear()+ "." + (today.getMonth()+1) + "." +today.getDate());
+			var dateText = document.createTextNode(today.getFullYear()+ ".0" + (today.getMonth()+1) + "." +today.getDate());
 			dateObj.appendChild(dateText);
 			
 			var viw = 0;

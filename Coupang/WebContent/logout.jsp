@@ -13,7 +13,7 @@ String check = request.getParameter("check");
 <!DOCTYPE html>
 <html>
 <head>
-	<link rel="shortcut icon" href="./logo_favicon.ico"/>
+	<link rel="shortcut icon" href="./coupangLogo_favicon.ico"/>
 	<meta charset="UTF-8">
 	<title>로그아웃</title>
 	

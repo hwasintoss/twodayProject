@@ -4,8 +4,8 @@
 <html>
 <head>
    <meta charset="UTF-8">
-   <link rel="shortcut icon" href="./logo_favicon.ico"/>
-   <title>Insert title here</title>
+   <link rel="shortcut icon" href="./coupangLogo_favicon.ico"/>
+   <title>회원가입</title>
 <style type="text/css">
 body{
 	margin: 0px;

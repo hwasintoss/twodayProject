@@ -12,7 +12,7 @@ String phone = request.getParameter("phone");
 <html>
 <head>
    <meta charset="UTF-8">
-   <link rel="shortcut icon" href="./logo_favicon.ico"/>
+   <link rel='shortcut icon' href='./coupangLogo_favicon.ico'>
    <title>로그인</title>
 <style type="text/css">
 
@@ -297,8 +297,6 @@ function alertMsg(){
      	 return false; 
       }else if(idObj.value != email){
     	  idRedBox.style.border = 'none';
-    	  
-    	 
     	  return false;
       }else{
     	  idRedBox.style.border = 'none';
@@ -320,8 +318,7 @@ function alertMsg(){
     	   return false;
        }else if(pwdObj.value != pwd){
     	   pwdRedBox.style.border = 'none';
-    	   
-    	  
+    	   errorMsgPwd.style.display = 'none';
     	   return false;
        }else {
     	   idRedBox.style.border = 'none';
@@ -355,6 +352,7 @@ function alertMsg(){
              return false;
          } else if (!pwdValidFnc()) {
         	 var errorMsgPwd = document.getElementById('errorPwd');
+        	 errorMsgPwd.style.display = 'inherit';
         	 errorMsgPwd.innerHTML = '이메일 또는 비밀번호를 다시 확인하세요. 쿠팡에 등록되지 않은 이메일이거나, 이메일 또는 비밀번호를 잘못 입력하셨습니다.';
              return false;
          }
@@ -439,7 +437,8 @@ function alertMsg(){
             <div id='pwdRedBox' class='inputField'>
                <img class='imgBox' alt="비밀번호입력" src="./pwd.png" onclick="pwdFocus();">
                <input id='inputPwd' class='inputBox' type="password" placeholder="비밀번호" >
-               <img alt="as" src="./눈__1.png" id="eye" onclick="eyeFnc();" style="padding:8px;  width: 36px; height: 31px; border: 0.5px solid #AAAAAA; border-left: none; float: left;">
+               <img alt="as" src="./눈__1.png" id="eye" onclick="eyeFnc();" style="padding:8px;  width: 36px; height: 31px; 
+               border: 0.5px solid #AAAAAA; border-left: none; float: left;">
             </div>
             <div id="errorPwd"></div>
          </div>

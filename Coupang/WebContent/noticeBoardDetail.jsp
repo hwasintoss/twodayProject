@@ -14,7 +14,7 @@ String check = request.getParameter("check");
 <html>
 <head>
 	<meta charset="UTF-8">
-	<link rel="shortcut icon" href="./logo_favicon.ico"/>
+	<link rel="shortcut icon" href="./coupangLogo_favicon.ico"/>
 	<title>게시판 상세</title>
 <style type="text/css">
 
