@@ -213,6 +213,12 @@ function alertMsg(){
 }
 
    window.onload = function() {
+	   idValidResult=false;
+	   pwdValidResult=false;
+	   pwdCheckValidREsult=false;
+	   nameCheckResult=false;
+	   phoneValidResult=false;	   
+	   	   
 		var listBox1 = document.getElementById('slotList1');
 		var listBox2 = document.getElementById('slotList2');
 		var listBox1In = document.getElementById('listBox1');
@@ -256,19 +262,21 @@ function alertMsg(){
     	 idRedBox.style.border = '1px solid red';
     	 errorMsg.style.display = 'inherit';
     	 errorMsg.innerHTML = '이메일을 입력하세요.';    	 
-         return false;
+         return idValidResult=false;
+         
       }else if(!emailValue.test(idObj.value)){
     	 idCheckImg.style.display = 'none'; 
       	 idRedBox.style.border = '1px solid red';
     	 errorMsg.style.display = 'inherit';
     	 errorMsg.innerHTML = '이메일 형식이 올바르지 않습니다.';
-    	 return false; 
+    	 return idValidResult=false; 
+    	 
       }else if (emailValue.test(idObj.value)) {  
-    	 errorMsg.style.display = 'none';
-    	  
+    	 errorMsg.style.display = 'none';    	  
     	 idCheckImg.setAttribute('display', 'inherit');     	   
     	 idCheckImg.parentNode.setAttribute('style', 'position: relative;');
     	 idCheckImg.setAttribute('style', 'position: absolute; top: 12px; right: 10px; height: 20px;');
+    	 return idValidResult=true;
       }
    }   
 
@@ -295,33 +303,33 @@ function alertMsg(){
          }
          
          //연속성을 위한 변수 할당123
-         var SamePass_1 = 0; //연속성(+) 카운드
-         var SamePass_2 = 0; //연속성(-) 카운드
+         var descCnt = 0; //연속성(+) 카운드 321
+         var ascCnt = 0; //연속성(-) 카운드
          
-         var chr_pass_0;
-         var chr_pass_1;
+         var firstChr;
+         var nextChr;
          
          for(var i=0; i < pwdObj.value.length; i++) {
-             chr_pass_0 = pwdObj.value.charAt(i);
-             chr_pass_1 = pwdObj.value.charAt(i+1);
+        	 firstChr = pwdObj.value.charAt(i);
+        	 nextChr = pwdObj.value.charAt(i+1);
             
              //연속성(+) 카운드
-             if(chr_pass_0.charCodeAt(0) - chr_pass_1.charCodeAt(0) == 1) {
-              SamePass_1 = SamePass_1 + 1;
+             if(firstChr.charCodeAt(0) - nextChr.charCodeAt(0) == 1) {
+            	 descCnt = descCnt + 1;
              } // if
             
              //연속성(-) 카운드
-             if(chr_pass_0.charCodeAt(0) - chr_pass_1.charCodeAt(0) == -1) {
-             SamePass_2 = SamePass_2 + 1;
+             if(firstChr.charCodeAt(0) - nextChr.charCodeAt(0) == -1) {
+            	 ascCnt = ascCnt + 1;
              } // if
         } // for
         
-        if(SamePass_1 > 1 || SamePass_2 > 1 )  {
+        if(descCnt > 1 || ascCnt > 1 )  {
         	 pwSuccessImg.style.display = 'none'; 
         	 redBox.style.border = '1px solid red';
         	 errorMsg.style.display = 'inherit';
         	 errorMsg.innerHTML = '연속된 문자/숫자는 사용이 불가합니다.';   
-             return false;
+        	 return pwdValidResult=false;
             }
          
          //6~15자
@@ -330,7 +338,7 @@ function alertMsg(){
         	 redBox.style.border = '1px solid red';
         	 errorMsg.style.display = 'inherit';
         	 errorMsg.innerHTML = '비밀번호는 6~15자 이내로 입력하셔야 합니다.';   
-             return false;
+        	 return pwdValidResult=false;
              
         //공백포함됐을때
          }else if(pwdObj.value.search(/\s/) != -1){         
@@ -338,7 +346,7 @@ function alertMsg(){
         	 redBox.style.border = '1px solid red';
         	 errorMsg.style.display = 'inherit';
         	 errorMsg.innerHTML = '비밀번호에 사용할 수 없는 문자가 포함되어 있습니다.';   
-             return false;
+        	 return pwdValidResult=false;
              
          //영어만 입력했을 때
          }else if(num < 0 && spe < 0 && eng >= 0){
@@ -346,7 +354,7 @@ function alertMsg(){
         	 redBox.style.border = '1px solid red';
         	 errorMsg.style.display = 'inherit';
         	 errorMsg.innerHTML = '비밀번호는 영자로만 입력할 수 없습니다.';   
-             return false;
+        	 return pwdValidResult=false;
              
          //숫자만 입력했을 때
          }else if(num >= 0 && spe < 0 && eng < 0){
@@ -354,7 +362,7 @@ function alertMsg(){
         	 redBox.style.border = '1px solid red';
         	 errorMsg.style.display = 'inherit';
         	 errorMsg.innerHTML = '비밀번호는 숫자로만 입력할 수 없습니다.';   
-             return false;
+        	 return pwdValidResult=false;
              
          //한가지로 채웠을 때=같은문자 3가지이상
          }else if(cnt > 0){
@@ -362,14 +370,14 @@ function alertMsg(){
         	 redBox.style.border = '1px solid red';
         	 errorMsg.style.display = 'inherit';
         	 errorMsg.innerHTML = '비밀번호에 동일한 숫자나 문자를 연속으로 사용할 수 없습니다.';   
-             return false;
+        	 return pwdValidResult=false;
              
          }else {            
-        	 errorMsg.style.display = 'none';
-       	  
+        	 errorMsg.style.display = 'none';       	  
         	 pwSuccessImg.setAttribute('display', 'inherit');     	   
         	 pwSuccessImg.parentNode.setAttribute('style', 'position: relative;');
         	 pwSuccessImg.setAttribute('style', 'position: absolute; top: 12px; right: 10px; height: 20px;');
+        	 return pwdValidResult=true;
          }
         
       }
@@ -386,13 +394,14 @@ function alertMsg(){
 	           	redBox.style.border = '1px solid red';
 	           	errorMsg.style.display = 'inherit';
 	           	errorMsg.innerHTML = '비밀번호가 일치하지 않습니다.';    	 
-                return false;
+	            return pwdCheckValidREsult=false;
             }   
              errorMsg.style.display = 'none';      	  
              pwCheckSuccessImg.setAttribute('display', 'inherit');     	   
              pwCheckSuccessImg.parentNode.setAttribute('style', 'position: relative;');
              pwCheckSuccessImg.setAttribute('style', 'position: absolute; top: 12px; right: 10px; height: 20px;');
-         }
+             return pwdCheckValidREsult=true;   
+      }
       
       function nameValidFnc() {
     		var nameSuccessImg = document.getElementById('nameSuccessImg');
@@ -411,7 +420,7 @@ function alertMsg(){
            	 	redBox.style.border = '1px solid red';
            		errorMsg.style.display = 'inherit';
            	 	errorMsg.innerHTML = '이름을 정확히 입력하세요.';    	 
-                return false;
+           	    return nameCheckResult=false;
            
             //특수문자가 있거나
             }else if((spe >= 0)){
@@ -419,7 +428,7 @@ function alertMsg(){
            	 	redBox.style.border = '1px solid red';
            		errorMsg.style.display = 'inherit';
            	 	errorMsg.innerHTML = '이름을 정확히 입력하세요.';    	 
-                return false;
+            	return nameCheckResult=false;
                 
             //숫자를 포함하거나
             }else if((num >= 0 && spe < 0 && eng < 0)||(num >= 0 && spe < 0 && eng >= 0)
@@ -428,13 +437,14 @@ function alertMsg(){
            	 	redBox.style.border = '1px solid red';
            		errorMsg.style.display = 'inherit';
            	 	errorMsg.innerHTML = '이름을 정확히 입력하세요.';    	 
-                return false;
+           	    return nameCheckResult=false;
             }
             errorMsg.style.display = 'none';      	  
             nameSuccessImg.setAttribute('display', 'inherit');     	   
             nameSuccessImg.parentNode.setAttribute('style', 'position: relative;');
             nameSuccessImg.setAttribute('style', 'position: absolute; top: 12px; right: 10px; height: 20px;');
-        }
+            return nameCheckResult=true;  
+      }
          
       function phoneValidFnc() {
     	    var phoneSuccessImg = document.getElementById('phoneSuccessImg');
@@ -449,14 +459,22 @@ function alertMsg(){
            	    redBox.style.border = '1px solid red';
            	    errorMsg.style.display = 'inherit';
            	    errorMsg.innerHTML = '휴대폰 번호를 정확하게 입력하세요.';    	 
-                return false;
+                return phoneValidResult=false;
             }
             errorMsg.style.display = 'none';      	  
             phoneSuccessImg.setAttribute('display', 'inherit');     	   
             phoneSuccessImg.parentNode.setAttribute('style', 'position: relative;');
             phoneSuccessImg.setAttribute('style', 'position: absolute; top: 12px; right: 10px; height: 20px;');
-         
+            return phoneValidResult=true;
          }
+      function finalValid() {
+		
+     	  if(idValidResult==true &&pwdValidResult==true &&idValidResult==true 
+     		&&pwdCheckValidREsult==true &&nameCheckResult==true &&phoneValidResult==true){
+     		  return true;
+     	  }
+     	  return false;
+	}
 
 </script>
 
@@ -515,7 +533,7 @@ function alertMsg(){
         </a>
       </div>
       <div id='content'>
-      <form action="login.jsp" >
+      <form action="login.jsp" onsubmit="return finalValid();">
          <div id='one' style="width: 480px; margin-left: 300px;">
             <div id='idRedBox' class='inputField'>
                <img class='imgBox' alt="아이디입력" src="./id.png">
